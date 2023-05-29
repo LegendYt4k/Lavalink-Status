@@ -2,7 +2,6 @@ const { EmbedBuilder, resolveColor, ActivityType } = require("discord.js");
 const config = require("../config.js");
 const moment = require("moment");
 require("moment-duration-format");
-const prettyBytes = require("pretty-bytes");
 const colors = require("colors");
 
 const arrayChunker = (array, chunkSize = 5) => {
@@ -13,6 +12,7 @@ const arrayChunker = (array, chunkSize = 5) => {
 };
 
 module.exports = async (client) => {
+  const prettyBytes = (await import("pretty-bytes")).default;
   const channel = await client.channels.fetch(config.channelId);
   const embed = new EmbedBuilder()
     .setColor(resolveColor("#2F3136"))
